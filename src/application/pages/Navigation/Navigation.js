@@ -1,7 +1,9 @@
 import React, { Component  } from 'react';
+import { searchMovies } from '../../api';
 
 export default class Navigation extends Component {
     render(){
+        let { searchMoviesFn } = this.props;
         return(
             <div className="navigation">
                <div className="logo">
@@ -36,7 +38,7 @@ export default class Navigation extends Component {
                 //  searchbox
 
                 <div className="searchbox">
-                    <input className="searchInput" placeholder="Search Movies" />
+                    <input onChange={(e)=>searchMoviesFn(e.target.value)} className="searchInput" placeholder="Search Movies" />
                 </div>
              }
             

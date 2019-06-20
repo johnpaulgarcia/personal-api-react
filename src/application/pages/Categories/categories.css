@@ -4,8 +4,50 @@
     background: #222;
 }
 
-@media screen and (max-width: 1200px) ,screen and (max-height: 900px){
-    .categories {
-        display: none;
-    }
+.categories-sm {
+    display: none;
+    grid-area: category-sm;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+    height: 100%;
+    
 }
+
+.select-option {
+    background: gray;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.select {
+    width: 100%;
+    height: fit-content;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    background: #eee;
+    outline: none;
+    border: none;
+    transition: 0.3s ease-in;
+}
+
+.cat-tag,.next-tag {
+    margin: 0;
+    padding: 0;
+}
+
+.next-tag {
+    font-weight: bolder;
+    color: #eee;
+    transform: scale(1.3);
+}
+
+.select:hover {
+    background: #ff7675;
+    color: #fff;
+   
+}
+

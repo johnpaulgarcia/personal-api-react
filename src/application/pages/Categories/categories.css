@@ -1,7 +1,7 @@
 .categories {
     grid-area: categories;
     height: 100%;
-    background: #222;
+    background: #eee;
 }
 
 .categories-sm {
@@ -31,7 +31,7 @@
     background: #eee;
     outline: none;
     border: none;
-    transition: 0.3s ease-in;
+    transition: 0.1s ease-in;
 }
 
 .cat-tag,.next-tag {

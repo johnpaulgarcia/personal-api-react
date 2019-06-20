@@ -1,15 +1,35 @@
 import React, { Component } from 'react';
-
+import { getGenres } from '../../api';
+import { getDataFn } from '../../actions/data';
+import GenreList from '../../components/GenreList';
 export default class Categories extends Component {
+    
+    constructor(props){
+        super(props);
+        this.state = {
+            genres : []
+        }
+    }
+    componentWillMount(){
+       let data = getDataFn(getGenres+1).then(data=>{
+           let genres = data.genres;
+           this.setState({genres: genres});
+       });
+       
+    }
     render(){
+
+        let { genres } = this.state;
+
         return(
-            <div class="categories">
-                <div class="select-option">
-                    <div class="select">
-                           <p class="cat-tag">Action</p>
-                           <p class="next-tag">></p>
-                    </div>
-                </div>
+            <div className="categories">
+               {
+                  genres.map(genre=>{
+                   return(
+                    <GenreList item={genre}/>
+                   ) 
+               })
+            }
             </div>
         );
     }

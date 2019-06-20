@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 const Container = ({children}) => {
    return(
-        <div class="container">
+        <div className="container">
             {children}
         </div>
    );

@@ -3,15 +3,15 @@ import React, { Component  } from 'react';
 export default class Navigation extends Component {
     render(){
         return(
-            <div class="navigation">
-               <div class="logo">
+            <div className="navigation">
+               <div className="logo">
                     <h1 class="logo">
-                        LOGO
+                       MOVI
                     </h1>
                </div>
 
-               <div class="options">
-                    <ul class="options-list">
+               <div className="options">
+                    <ul className="options-list">
                         <li>
                             <a>
                                 Popular
@@ -35,8 +35,8 @@ export default class Navigation extends Component {
                {
                 //  searchbox
 
-                <div class="searchbox">
-                    <input class="searchInput" placeholder="Search Movies" />
+                <div className="searchbox">
+                    <input className="searchInput" placeholder="Search Movies" />
                 </div>
              }
             

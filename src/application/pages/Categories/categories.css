@@ -1,0 +1,11 @@
+.categories {
+    grid-area: categories;
+    height: 100%;
+    background: #222;
+}
+
+@media screen and (max-width: 1200px) ,screen and (max-height: 900px){
+    .categories {
+        display: none;
+    }
+}

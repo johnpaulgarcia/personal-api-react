@@ -1,0 +1,17 @@
+.container {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: minmax(250px,2fr) minmax(400px,10fr);
+    grid-template-rows: 1fr 11fr 0fr;
+    grid-template-areas: 
+    "navigation navigation navigation"
+    "categories movies movies";
+}
+
+@media screen and (max-width: 1200px) ,screen and (max-height: 900px){
+   .container {
+       grid-template-areas: 
+       "navigation navigation navigation"
+       "movies movies movies";
+   }
+}

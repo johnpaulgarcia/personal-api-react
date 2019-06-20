@@ -1,0 +1,5 @@
+.movies {
+    grid-area: movies;
+    height: 100%;
+    background: #444;
+}

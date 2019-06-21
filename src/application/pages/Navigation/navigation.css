@@ -53,6 +53,7 @@
 
 a {
     color: #ccc;
+    text-decoration: none;
 }
 
 a:hover {

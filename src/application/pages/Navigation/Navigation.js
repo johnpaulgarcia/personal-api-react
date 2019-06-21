@@ -1,15 +1,17 @@
 import React, { Component  } from 'react';
 import { searchMovies } from '../../api';
-
+import { Link } from 'react-router-dom'; 
 export default class Navigation extends Component {
     render(){
         let { searchMoviesFn } = this.props;
         return(
             <div className="navigation">
                <div className="logo">
-                    <h1 class="logo">
-                       MOVI
+               <Link to="/">
+                    <h1 className="logo">
+                        MOVI
                     </h1>
+                </Link>
                </div>
 
                <div className="options">

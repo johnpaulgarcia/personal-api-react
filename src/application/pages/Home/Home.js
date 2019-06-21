@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Navigation from '../Navigation';
 import Categories from '../Categories';
 import CategoriesSM from '../Categories/Categories-sm';
@@ -13,13 +13,21 @@ export default class Home extends Component {
             movies : [],
             genres : [],
             loading: false,
-            page : 1
+            page : 1,
+            searching: false,
         }
     }
     componentWillMount(){
         let { page } = this.state;
         this.loadGenre(page);
         this.loadMovies(page);   
+    }
+    componentDidUpdate(prevProps){
+       if(prevProps.searching!==this.props.searching){
+            this.setState({
+                searching: this.props.searching
+            })
+       }
     }
     loadMovies = (page) => {
         this.setState({loading: true});
@@ -32,8 +40,6 @@ export default class Home extends Component {
                        this.setState({loading: false});
                        console.log(results[0]);
                     });
-       
-
     }
 
     loadGenre = (page) => {
@@ -54,34 +60,22 @@ export default class Home extends Component {
             this.setState({
                 movies: movies
             });
-            this.setState({loading: false});
+            this.setState({loading: false,searching: false});
         });
        
         
     }
 
-    searchMovies = (query) => {
-        this.setState({loading: true});
-        let data = getDataFn(searchMovies+query).then(data=>{
-            let movies = data.results;
-            this.setState({
-                movies: movies
-            });
-            this.setState({loading: false});
-        }).catch(err=>{
-            this.loadMovies(this.state.page);
-            this.setState({loading: false});
-        })
-    }
 
     render(){
+        let {searching} = this.state;
         return(
-            <Container>
-                <Navigation searchMoviesFn={this.searchMovies}/>
+            <Fragment>
+              {this.state.loading &&  <img class="loading" src="https://dddance.party/imgs/veryman_small.gif" />}
                 <CategoriesSM />
                 <Categories fetchByGenre={this.fetchByGenre} genres={this.state.genres}/>
-                <Movies movies={this.state.movies}/>
-            </Container>
+                <Movies movies={searching ? this.props.movies : this.state.movies}/>
+            </Fragment>
         );
     }
 }

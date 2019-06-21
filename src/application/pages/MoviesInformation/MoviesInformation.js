@@ -1,37 +1,56 @@
 import React, { Component } from 'react';
 import { getMovieInformation, apiSuffix } from '../../api';
-import { Link } from 'react-router-dom';
-import { getDataFn } from '../../actions/data';
-import { posterImage } from '../../api';
+import Loading from '../../components/Loading';
+import { getDataFn,getTrailerFn } from '../../actions/data';
+import { posterImage,getTrailer,trailerSuffix } from '../../api';
 class MoviesInformation extends Component {
     constructor(props){
         super(props);
         this.state = {
             movieInformation: [],
             avatar: [],
-            genres: []
+            genres: [],
+            loading: false,
+            imdb_id: '',
+            trailer: ''
         }
     }
 
-    componentWillMount(){
+   componentWillMount(){
        let { match: { params: {id} } } = this.props;
+       this.setState({loading: true})
         getDataFn(getMovieInformation+id+apiSuffix)
             .then(response=>{
                 this.setState({
                     movieInformation: response,
                     avatar: posterImage+response.poster_path,
-                    genres: response.genres
+                    genres: response.genres,
+                    loading: false,
+                    imdb_id: response.imdb_id
                 });
-                console.log(response);
-            });
+
+               getTrailerFn(getTrailer+response.imdb_id+trailerSuffix)
+                    .then(response=>{
+                             let data = response.data.data.movies[0].trailer.qualities[0].videoURL;
+                                this.setState({
+                                    trailer: data
+                                })
+                            }).catch(err=>{
+                                this.setState({
+                                    trailer: ''
+                                })
+                            })
+            })
+            ;
     }
 
     render(){
-        let { movieInformation,avatar,genres } = this.state;
+        let { movieInformation,avatar,genres,trailer } = this.state;
        
         return(      
             <div className="mi">
-               <div className="mi-container">
+                {this.state.loading && <Loading />}
+              {!this.state.loading && <div className="mi-container">
                     <div style={{backgroundImage: `url('${avatar}')`,backgroundSize: 'cover'}} className="movie-logo">
                     </div>
 
@@ -58,8 +77,20 @@ class MoviesInformation extends Component {
                     <div className="movie-description">
                         { movieInformation.overview }
                     </div>
+
+                    {
+                        trailer && <div class="video">
+                        <video preload="auto" width="100%" height="100%" controls autoplay="true">
+                             <source src={`${trailer}`} type="video/mp4"></source>
+                          Your browser does not support HTML5 video.
+                        </video>
+   
+                    </div>
+                    }
                </div>
-               </div>
+                        }
+               </div> 
+            
         );
     }
 }

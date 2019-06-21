@@ -3,7 +3,7 @@ import { searchMovies } from '../../api';
 import { Link } from 'react-router-dom'; 
 export default class Navigation extends Component {
     render(){
-        let { searchMoviesFn } = this.props;
+        let { searchMoviesFn,populateMoviesFn } = this.props;
         return(
             <div className="navigation">
                <div className="logo">
@@ -17,7 +17,7 @@ export default class Navigation extends Component {
                <div className="options">
                     <ul className="options-list">
                         <li>
-                            <a>
+                            <a onClick={()=>populateMoviesFn('popular')}>
                                 Popular
                             </a>
                         </li>

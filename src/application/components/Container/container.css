@@ -13,9 +13,10 @@
     "categories movies movies";
     color: #444;
     font-family: Avant , Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
 }
 
-@media screen and (max-width: 900px) ,screen and (max-height: 700px){
+@media screen and (max-width: 900px) ,screen and (max-height: 900px){
    .container {
         grid-template-columns: minmax(250px,2fr) minmax(400px,10fr);
         grid-template-rows: 1fr 1fr 11fr 0fr;

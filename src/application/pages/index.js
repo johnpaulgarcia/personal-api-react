@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter, Switch, Route } from 'react-router-dom';
+import { HashRouter, Switch, Route, Redirect } from 'react-router-dom';
 import Home from '../pages/Home';
 import Container from '../components/Container';
 import Loading from '../components/Loading';
@@ -15,6 +15,7 @@ class index extends React.Component {
             movies : [],
             searching: false,
             loading: false,
+            redirect: false,
         }
     }
 
@@ -23,12 +24,24 @@ class index extends React.Component {
         let data = getDataFn(searchMovies+query).then(data=>{
             let movies = data.results;
             this.setState({
-                movies: movies,loading:false
+                movies: movies,loading:false,redirect:true
             });
         }).catch(err=>{
            this.setState({
                searching: false,loading: false
            })
+        })
+
+       
+    }
+
+    populateMovies = (query) => {
+        getDataFn(getPopularMovies+1)
+        .then(response=>{
+            let data = response.results;
+            this.setState({
+                movies: data,
+            })
         })
     }
 
@@ -40,7 +53,7 @@ class index extends React.Component {
     return(
         <Container>
         <HashRouter>
-        <Navigation searchMoviesFn={this.searchMovies}/>
+        <Navigation populateMoviesFn={this.populateMovies} searchMoviesFn={this.searchMovies}/>
         {this.state.loading && <Loading />}
           <Switch>
             <Route 

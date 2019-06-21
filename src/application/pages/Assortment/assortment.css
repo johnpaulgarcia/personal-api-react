@@ -1,0 +1,10 @@
+.assortment {
+    background:#111;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 16px;
+    grid-column: 1/-1;
+}

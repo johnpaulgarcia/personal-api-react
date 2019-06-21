@@ -3,6 +3,7 @@ import Movies from '../Movies';
 import Loading from '../../components/Loading';
 import Categories from '../Categories';
 import CategoriesSM from '../Categories/Categories-sm';
+import Assortment from '../Assortment';
 import { getPopularMovies,getGenres,getMoviesByGenre,searchMovies } from '../../api';
 import { getDataFn } from '../../actions/data';
 export default class Home extends Component {
@@ -67,6 +68,7 @@ export default class Home extends Component {
             <Fragment>
                 {this.state.loading && <Loading />}
                 <CategoriesSM />
+                <Assortment />
                 <Categories fetchByGenre={this.fetchByGenre} genres={this.state.genres}/>
                 <Movies movies={searching ? this.props.movies : this.state.movies}/>
             </Fragment>

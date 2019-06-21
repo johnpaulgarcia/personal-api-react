@@ -3,7 +3,7 @@ import Navigation from '../Navigation';
 import Categories from '../Categories';
 import CategoriesSM from '../Categories/Categories-sm';
 import Movies from '../Movies';
-import Container from '../../components/Container';
+import Loading from '../../components/Loading';
 import { getPopularMovies,getGenres,getMoviesByGenre,searchMovies } from '../../api';
 import { getDataFn } from '../../actions/data';
 export default class Home extends Component {
@@ -12,7 +12,7 @@ export default class Home extends Component {
         this.state = {
             movies : [],
             genres : [],
-            loading: false,
+            loading: this.props.loading,
             page : 1,
             searching: false,
         }
@@ -25,8 +25,8 @@ export default class Home extends Component {
     componentDidUpdate(prevProps){
        if(prevProps.searching!==this.props.searching){
             this.setState({
-                searching: this.props.searching
-            })
+                searching: this.props.searching,
+            });
        }
     }
     loadMovies = (page) => {
@@ -71,7 +71,7 @@ export default class Home extends Component {
         let {searching} = this.state;
         return(
             <Fragment>
-              {this.state.loading &&  <img class="loading" src="https://dddance.party/imgs/veryman_small.gif" />}
+                {this.state.loading && <Loading />}
                 <CategoriesSM />
                 <Categories fetchByGenre={this.fetchByGenre} genres={this.state.genres}/>
                 <Movies movies={searching ? this.props.movies : this.state.movies}/>

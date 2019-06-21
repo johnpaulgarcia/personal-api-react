@@ -3,6 +3,7 @@ import { getMovieInformation, apiSuffix } from '../../api';
 import Loading from '../../components/Loading';
 import { getDataFn,getTrailerFn } from '../../actions/data';
 import { posterImage,getTrailer,trailerSuffix } from '../../api';
+
 class MoviesInformation extends Component {
     constructor(props){
         super(props);
@@ -44,6 +45,7 @@ class MoviesInformation extends Component {
             ;
     }
 
+
     render(){
         let { movieInformation,avatar,genres,trailer } = this.state;
        
@@ -79,9 +81,10 @@ class MoviesInformation extends Component {
                     </div>
 
                     {
-                        trailer && <div class="video">
-                        <video preload="auto" width="100%" height="100%" controls autoplay="true">
+                        trailer && <div class="video" >
+                        <video class="video-js vjs-default-skin" preload="auto" width="100%" height="100%" controls autoplay="true">
                              <source src={`${trailer}`} type="video/mp4"></source>
+                             <source src={`${trailer}`}  type="application/x-mpegURL"></source>
                           Your browser does not support HTML5 video.
                         </video>
    

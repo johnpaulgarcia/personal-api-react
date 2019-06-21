@@ -49,7 +49,7 @@ class index extends React.Component {
                 render={(props)=><Home {...props} searching={this.state.searching} movies={this.state.movies} />} />
             <Route 
                 path="/movie/:id" 
-                render={(props)=><MoviesInformation />} />
+                render={(props)=><MoviesInformation {...props} />} />
           </Switch>
         </HashRouter>
         </Container>

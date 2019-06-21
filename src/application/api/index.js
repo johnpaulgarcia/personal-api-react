@@ -16,3 +16,7 @@ exports.getGenres = `https://api.themoviedb.org/3/genre/movie/list?api_key=${api
 // searching movies
 
 exports.searchMovies = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&page=1&query=`;
+
+// get actual movie information
+exports.apiSuffix = `?api_key=${apiKey}&language=en-US`;
+exports.getMovieInformation  = `https://api.themoviedb.org/3/movie/`;

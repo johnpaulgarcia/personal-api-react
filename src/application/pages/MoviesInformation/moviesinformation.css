@@ -1,0 +1,45 @@
+.mi {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+}
+
+.mi-container {
+    display: grid;
+    padding: 20px;
+    grid-area: actual;
+    grid-template-columns: minmax(200px,1fr) minmax(300px,11fr);
+    grid-template-rows: minmax(200px,1fr) minmax(300px,2fr) minmax(0px,9fr);
+    width:80vw;
+    height: 100%;
+}
+
+.movie-logo {
+  
+}
+
+.properties {
+    padding: 10px;
+}
+
+.movie-description {
+    grid-column: 1/-1;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: 100;
+    letter-spacing: 1.1px;
+    line-height: 1.2;
+}
+
+.movie-tag {
+    font-size: 16px;
+    letter-spacing: 1.2px;
+    padding: 0px 10px 0px 10px;
+    line-height: 1.4;
+}
+
+.movie-title {
+    font-weight: bolder;
+}

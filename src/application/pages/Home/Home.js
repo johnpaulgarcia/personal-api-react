@@ -1,7 +1,4 @@
 import React, { Component, Fragment } from 'react';
-import Navigation from '../Navigation';
-import Categories from '../Categories';
-import CategoriesSM from '../Categories/Categories-sm';
 import Movies from '../Movies';
 import Loading from '../../components/Loading';
 import { getPopularMovies,getGenres,getMoviesByGenre,searchMovies } from '../../api';
@@ -19,7 +16,6 @@ export default class Home extends Component {
     }
     componentWillMount(){
         let { page } = this.state;
-        this.loadGenre(page);
         this.loadMovies(page);   
     }
     componentDidUpdate(prevProps){
@@ -41,39 +37,11 @@ export default class Home extends Component {
                        console.log(results[0]);
                     });
     }
-
-    loadGenre = (page) => {
-        this.setState({loading: true});
-       let data = getDataFn(getGenres+page).then(data=>{
-           let genres = data.genres;
-           this.setState({genres: genres});
-           this.setState({loading: false});
-       });
-       
-       
-    }
-
-    fetchByGenre = (id) => {
-        this.setState({loading: true});
-        let data = getDataFn(getMoviesByGenre+id).then(data=>{
-            let movies = data.results;
-            this.setState({
-                movies: movies
-            });
-            this.setState({loading: false,searching: false});
-        });
-       
-        
-    }
-
-
     render(){
         let {searching} = this.state;
         return(
             <Fragment>
                 {this.state.loading && <Loading />}
-                <CategoriesSM />
-                <Categories fetchByGenre={this.fetchByGenre} genres={this.state.genres}/>
                 <Movies movies={searching ? this.props.movies : this.state.movies}/>
             </Fragment>
         );

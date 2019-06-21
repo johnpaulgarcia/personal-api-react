@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { posterImage  } from '../../api';
+import { Link } from 'react-router-dom';
 const ListItem = ({item}) => {
     let {
         genre_ids,
@@ -19,9 +20,9 @@ const ListItem = ({item}) => {
               </p>
             </div>
             
-            <div className="name">
+            <Link to={`/movie/${item.id}`} className="name">
                 {title}
-            </div>
+            </Link>
         </div>
     );
 }

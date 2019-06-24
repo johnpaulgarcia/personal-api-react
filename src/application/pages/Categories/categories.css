@@ -34,6 +34,28 @@
     transition: 0.1s ease-in;
 }
 
+.csm-list {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.csm-list-actual {
+    padding: 10px 10px 10px 10px;
+    color: #333;
+    border: 1px solid gray;
+    font-weight: 100;
+    margin: 2px;
+}
+
+.csm-list-actual:hover{
+    background: orangered;
+    color: #fff;
+}
+
+
+
 .cat-tag,.next-tag {
     margin: 0;
     padding: 0;
@@ -50,4 +72,18 @@
     color: #fff;
    
 }
+
+
+@media screen and (max-width: 576px){
+    
+   
+    .categories-sm {
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: 600px){
+   
+}
+
 

@@ -67,3 +67,15 @@
 .movie-title {
     font-weight: bolder;
 }
+
+@media screen and (max-width: 752px) {
+    .mi-container {
+        display: grid;
+        padding: 20px;
+        grid-area: actual;
+        grid-template-columns: 1fr;
+        grid-template-rows: 200px fit-content(200px) fit-content(600px);
+        width:80vw;
+        height: 100%;
+    }
+}

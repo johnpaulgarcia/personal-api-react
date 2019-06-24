@@ -67,7 +67,7 @@ export default class Home extends Component {
         return(
             <Fragment>
                 {this.state.loading && <Loading />}
-                <CategoriesSM />
+                <CategoriesSM fetchByGenre={this.fetchByGenre} genres={this.state.genres} />
                 <Assortment />
                 <Categories fetchByGenre={this.fetchByGenre} genres={this.state.genres}/>
                 <Movies movies={searching ? this.props.movies : this.state.movies}/>

@@ -13,7 +13,7 @@
     "categories movies movies";
     color: #444;
     font-family: Avant , Arial, Helvetica, sans-serif;
-    overflow-x: hidden;
+    overflow-x: scroll;
 }
 
 @media screen and (max-width: 900px) ,screen and (max-height: 900px){

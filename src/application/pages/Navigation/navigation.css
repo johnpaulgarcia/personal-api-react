@@ -34,7 +34,8 @@
 
     grid-area: searchbox;
     padding: 0;
-    margin: 0;
+    align-self: flex-end;
+    justify-self: flex-end;
     display: flex;
     align-self: center;
     margin-right: 50px;
@@ -62,4 +63,52 @@ a:hover {
 
 .logo {
     color: #ddd;
+    margin-left: 10px;
+}
+
+@media screen and (max-width: 752px){
+    .options-list { 
+       display: none;
+    }
+    
+}
+
+@media screen and (max-width: 576px){
+    .navigation {
+
+        display: flex;
+        padding: 0 10px 0 10px;
+        flex-direction: row;
+        height: fit-content;
+        padding: 20px;
+        align-items: center;
+       
+       
+    }
+
+    .logo {
+        margin: 0;
+        padding: 0;
+    }
+
+    .searchbox {
+       
+       display: grid;
+       width: 45%;
+       align-self: flex-end;
+       justify-content: flex-end;
+      
+    }
+
+    .logo {
+        font-size: 14px;
+    }
+
+   
+}
+
+@media screen and (max-width: 602px){
+    .searchbox {
+      
+    }
 }

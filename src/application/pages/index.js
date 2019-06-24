@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { HashRouter, Switch, Route, Redirect,Link } from 'react-router-dom';
 import Home from '../pages/Home';
 import Container from '../components/Container';
 import Loading from '../components/Loading';
@@ -8,6 +8,7 @@ import { getPopularMovies,getGenres,getMoviesByGenre,searchMovies, getTopRatedMo
 import { getDataFn } from '../actions/data';
 import MoviesInformation from './MoviesInformation';
 import Paged from '../pages/Paged';
+import Pages from '../pages/Pages';
 import { bigIntLiteral } from '@babel/types';
 class index extends React.Component {
 
@@ -75,6 +76,11 @@ class index extends React.Component {
                 path="/paged/:pagename"
                 render={(props)=><Paged movies={this.state.movies} {...props} />}
             />
+
+            <Route  
+                path="/pages/:pageno"
+                render={(props)=><Pages {...props}/>}
+                />
           </Switch>
         </HashRouter>
         </Container>

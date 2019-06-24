@@ -4,7 +4,7 @@ import Loading from '../../components/Loading';
 import Categories from '../Categories';
 import CategoriesSM from '../Categories/Categories-sm';
 import Assortment from '../Assortment';
-import { getPopularMovies,getGenres,getMoviesByGenre,searchMovies } from '../../api';
+import { getPopularMovies,getGenres,getMoviesByGenre,searchMovies,getUpcomingMovies } from '../../api';
 import { getDataFn } from '../../actions/data';
 export default class Home extends Component {
     constructor(props){
@@ -31,7 +31,7 @@ export default class Home extends Component {
     }
     loadMovies = (page) => {
         this.setState({loading: true});
-        let data = getDataFn(getPopularMovies+page)
+        let data = getDataFn(getUpcomingMovies+page)
                     .then(data=>{
                        let results = data.results;
                        this.setState({

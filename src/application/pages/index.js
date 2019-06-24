@@ -4,9 +4,11 @@ import Home from '../pages/Home';
 import Container from '../components/Container';
 import Loading from '../components/Loading';
 import Navigation from '../pages/Navigation';
-import { getPopularMovies,getGenres,getMoviesByGenre,searchMovies } from '../api';
+import { getPopularMovies,getGenres,getMoviesByGenre,searchMovies, getTopRatedMovies, getNowPlayingMovies } from '../api';
 import { getDataFn } from '../actions/data';
 import MoviesInformation from './MoviesInformation';
+import Paged from '../pages/Paged';
+import { bigIntLiteral } from '@babel/types';
 class index extends React.Component {
 
     constructor(props){
@@ -36,18 +38,23 @@ class index extends React.Component {
     }
 
     populateMovies = (query) => {
-        getDataFn(getPopularMovies+1)
+        let quered = '';
+        switch(query){
+            case 'popular': quered = getPopularMovies; break;
+            case 'toprated': quered = getTopRatedMovies; break;
+            case 'nowplaying': quered = getNowPlayingMovies; break;
+            default:
+                console.log("Error.");
+        }
+        getDataFn(quered+1)
         .then(response=>{
             let data = response.results;
             this.setState({
                 movies: data,
             })
-        })
+        });
+        
     }
-
- 
-
-
     render(){
         let { movies } = this.state;
     return(
@@ -63,6 +70,10 @@ class index extends React.Component {
             <Route 
                 path="/movie/:id" 
                 render={(props)=><MoviesInformation {...props} />} />
+            <Route
+                path="/paged/:pagename"
+                render={(props)=><Paged movies={this.state.movies} {...props} />}
+            />
           </Switch>
         </HashRouter>
         </Container>

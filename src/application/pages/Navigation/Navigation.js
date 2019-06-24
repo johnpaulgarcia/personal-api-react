@@ -16,23 +16,17 @@ export default class Navigation extends Component {
 
                <div className="options">
                     <ul className="options-list">
-                        <li>
-                            <a onClick={()=>populateMoviesFn('popular')}>
+                        <Link to="/paged/popular" onClick={()=>populateMoviesFn('popular')}>             
                                 Popular
-                            </a>
-                        </li>
+                        </Link>
 
-                        <li>
-                        <a>
-                            Top Rated
-                        </a>
-                     </li>
+                        <Link to="/paged/top-rated" onClick={()=>populateMoviesFn('toprated')}>             
+                                Top Rated
+                        </Link>
 
-                     <li>
-                     <a>
-                         Now Playing
-                     </a>
-                  </li>
+                        <Link to="/paged/now-playing" onClick={()=>populateMoviesFn('nowplaying')}>             
+                            Now Playing
+                        </Link>
                     </ul>
                </div>
 

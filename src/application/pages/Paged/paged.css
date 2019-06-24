@@ -1,0 +1,25 @@
+.paged {
+    display: grid;
+    grid-template-areas: 
+    "tag tag tag"
+    "movies movies movies"
+    "movies movies movies"
+    ;
+    grid-template-rows: 10px fit-content(auto-fit,11fr);
+    grid-column: 1/-1;
+}
+
+.paged-text {
+    grid-area: tag;
+    height: fit-content;
+    display: grid;
+    align-self: start;
+    justify-content: center;
+}
+
+.paged-text-actual {
+    color: #444;
+    font-weight: 100;
+    padding-bottom: 5px;
+    text-transform: capitalize;
+}

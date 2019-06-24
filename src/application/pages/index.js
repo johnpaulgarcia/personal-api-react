@@ -56,6 +56,7 @@ class index extends React.Component {
         
     }
     render(){
+        
         let { movies } = this.state;
     return(
         <Container>

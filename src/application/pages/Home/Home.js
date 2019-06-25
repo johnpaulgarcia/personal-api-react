@@ -14,7 +14,9 @@ export default class Home extends Component {
             genres : [],
             loading: this.props.loading,
             page : 1,
+            pageEnd: '',
             searching: false,
+            loadless: false
         }
     }
     componentWillMount(){
@@ -36,7 +38,8 @@ export default class Home extends Component {
                     .then(data=>{
                        let results = data.results;
                        this.setState({
-                           movies: results
+                           movies: results,
+                           pageEnd: results.length
                        });
                        this.setState({loading: false});
                        console.log(results[0]);
@@ -57,22 +60,64 @@ export default class Home extends Component {
         let data = getDataFn(getMoviesByGenre+id).then(data=>{
             let movies = data.results;
             this.setState({
-                movies: movies
+                movies: [...this.state.movies,movies]
             });
             this.setState({loading: false,searching:false});
         });
        
+    
+    }
+
+
+    loadmore = () => {
+        let cpage = this.state.page;
+        this.setState({
+            page: cpage + 1,
+            loadless: true,
+        })
+        this.loadMovies(cpage + 1);
+    }
+
+    loadless = () => {
+
         
+
+       if(this.state.page > 1){
+        let cpage = this.state.page;
+        this.setState({
+            page: cpage - 1,
+        })
+        this.loadMovies(cpage - 1);
+       }
+       
+      
+    }
+
+    updateState = () => {
+        this.props.updateState(this.state);
     }
     render(){
-        let {searching} = this.state;
+       
+        let {searching,loadless,page,pageEnd} = this.state;
         return(
             <Fragment>
                 {this.state.loading && <Loading />}
                 <CategoriesSM fetchByGenre={this.fetchByGenre} genres={this.state.genres} />
-                <Assortment />
+               
                 <Categories fetchByGenre={this.fetchByGenre} genres={this.state.genres}/>
                 <Movies movies={searching ? this.props.movies : this.state.movies}/>
+                <div class="next">
+
+                {loadless && page > 1 && <button onClick={()=>this.loadless()} class="loadmore">
+                    Prev
+                 </button>}
+                
+                  {page <= pageEnd &&  <button onClick={()=>this.loadmore()} class="loadmore">
+                       Next
+                    </button>}
+
+                    
+              </div>
             </Fragment>
         );
     }

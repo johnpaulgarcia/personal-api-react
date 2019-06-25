@@ -82,6 +82,7 @@ class index extends React.Component {
                 render={(props)=><Pages {...props}/>}
                 />
           </Switch>
+         
         </HashRouter>
         </Container>
     );

@@ -4,13 +4,14 @@ export default class Paged extends Component {
     constructor(props){
         super(props);
         this.state = {
-           movies: []
+           movies: [],
+         
         }
     }
 
     render(){
         document.title = `${this.props.match.params.pagename.toUpperCase()} - Movi Trailers`;
-        let { match: {params: {pagename}},movies} = this.props;
+        let { match: {params: {pagename}},movies,loadmore} = this.props;
         return(
             <div className="paged">
                 <div className="paged-text">
@@ -19,13 +20,9 @@ export default class Paged extends Component {
 
                 <Movies movies={movies} />
                 <div class="next">
-                         <button  class="loadmore">
-                              Prev
-                        </button>
-
-                        <button  class="loadmore">
-                       Next
-                  </button>
+                    <button onClick={()=>loadmore(pagename)} class="loadmore">
+                        LOAD MORE
+                    </button>
                 </div>
             </div>
         );

@@ -11,6 +11,7 @@ export default class Movies extends Component {
                     movies.map(movie=>{
                         return(
                             <ListItem key={movie.id} item={movie} />
+                            
                         );
                     })
                 }

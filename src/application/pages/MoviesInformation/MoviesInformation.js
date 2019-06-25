@@ -51,7 +51,7 @@ class MoviesInformation extends Component {
        
         return(      
             <div className="mi">
-                {this.state.loading && <Loading />}
+                {(this.state.loading || !trailer) && <Loading />}
               {!this.state.loading && <div className="mi-container">
                     <div style={{backgroundImage: `url('${avatar}')`,backgroundSize: 'cover'}} className="movie-logo">
                     </div>
@@ -90,6 +90,8 @@ class MoviesInformation extends Component {
    
                     </div>
                     }
+
+                    
                </div>
                         }
                </div> 

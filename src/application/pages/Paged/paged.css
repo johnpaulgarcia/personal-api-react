@@ -1,11 +1,13 @@
 .paged {
     display: grid;
+
+    grid-template-rows: 50px 10fr fit-content(50px);
     grid-template-areas: 
     "tag tag tag"
     "movies movies movies"
-    "movies movies movies"
+    "next next next"
     ;
-    grid-template-rows: 10px fit-content(auto-fit,11fr);
+    
     grid-column: 1/-1;
 }
 
@@ -14,7 +16,7 @@
     height: fit-content;
     display: grid;
     align-self: start;
-    justify-content: center;
+    justify-self: center;
 }
 
 .paged-text-actual {
@@ -22,4 +24,8 @@
     font-weight: 100;
     padding-bottom: 5px;
     text-transform: capitalize;
+}
+
+.next {
+    grid-area: next;
 }

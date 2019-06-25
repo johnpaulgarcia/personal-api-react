@@ -14,10 +14,19 @@ export default class Paged extends Component {
         return(
             <div className="paged">
                 <div className="paged-text">
-                    <h1 className="paged-text-actual">{pagename} Movies</h1>
+                    <p className="paged-text-actual">{pagename} Movies</p>
                 </div>
 
                 <Movies movies={movies} />
+                <div class="next">
+                         <button  class="loadmore">
+                              Prev
+                        </button>
+
+                        <button  class="loadmore">
+                       Next
+                  </button>
+                </div>
             </div>
         );
     }

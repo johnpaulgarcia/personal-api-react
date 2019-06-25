@@ -21,6 +21,7 @@ export default class Home extends Component {
         let { page } = this.state;
         this.loadMovies(page);
         this.loadGenre(page);   
+        document.title = "Home - Movi Trailers ";
     }
     componentDidUpdate(prevProps){
        if(prevProps.searching!==this.props.searching){
@@ -51,6 +52,7 @@ export default class Home extends Component {
     }
 
     fetchByGenre = (id) => {
+        document.title = "Sort by Genre - Movi Trailers";
         this.setState({loading: true,searching: true});
         let data = getDataFn(getMoviesByGenre+id).then(data=>{
             let movies = data.results;

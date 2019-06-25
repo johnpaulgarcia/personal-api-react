@@ -7,8 +7,9 @@ export default class Paged extends Component {
            movies: []
         }
     }
-    
+
     render(){
+        document.title = `${this.props.match.params.pagename.toUpperCase()} - Movi Trailers`;
         let { match: {params: {pagename}},movies} = this.props;
         return(
             <div className="paged">

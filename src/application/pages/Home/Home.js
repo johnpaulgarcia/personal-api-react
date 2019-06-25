@@ -16,10 +16,19 @@ export default class Home extends Component {
             page : 1,
             pageEnd: '',
             searching: false,
-            loadless: false
+            loadless: false,
+            withgenre: false,
         }
     }
     componentWillMount(){
+      
+        this.setState({
+            activeLink: getUpcomingMovies
+        })
+       
+    }
+
+    componentDidMount(){
         let { page } = this.state;
         this.loadMovies(page);
         this.loadGenre(page);   
@@ -31,18 +40,27 @@ export default class Home extends Component {
                 searching: this.props.searching,
             });
        }
+
+      
     }
+
+
     loadMovies = (page) => {
         this.setState({loading: true});
-        let data = getDataFn(getUpcomingMovies+page)
+        let { activeLink,withgenre } = this.state;
+        if(withgenre){
+            activeLink+="&page="
+        }
+
+       
+        let data = getDataFn(activeLink+page)
                     .then(data=>{
                        let results = data.results;
                        this.setState({
                            movies: results,
-                           pageEnd: results.length
+                           pageEnd: results.length,
+                           loading: false
                        });
-                       this.setState({loading: false});
-                       console.log(results[0]);
                     });
     }
     loadGenre = (page) => {
@@ -56,14 +74,26 @@ export default class Home extends Component {
 
     fetchByGenre = (id) => {
         document.title = "Sort by Genre - Movi Trailers";
-        this.setState({loading: true,searching: true});
-        let data = getDataFn(getMoviesByGenre+id).then(data=>{
-            let movies = data.results;
-            this.setState({
-                movies: [...this.state.movies,movies]
-            });
-            this.setState({loading: false,searching:false});
+        let  { page } = this.state;
+        this.setState((state)=>{
+           return {
+            activeLink: getMoviesByGenre+id,
+            page: 1,
+            withgenre: true
+           }
+        },()=>{
+            this.loadMovies(page);
         });
+       
+        // let  { page } = this.state;
+        // this.setState({loading: true,searching: true});
+        // let data = getDataFn(getMoviesByGenre+id+"&page="+page).then(data=>{
+        //     let movies = data.results;
+        //     this.setState({
+        //         movies: movies
+        //     });
+        //     this.setState({loading: false,searching:false});
+        // });
        
     
     }
@@ -93,9 +123,7 @@ export default class Home extends Component {
       
     }
 
-    updateState = () => {
-        this.props.updateState(this.state);
-    }
+    
     render(){
        
         let {searching,loadless,page,pageEnd} = this.state;

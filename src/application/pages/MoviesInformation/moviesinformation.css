@@ -64,6 +64,8 @@
     line-height: 1.4;
 }
 
+
+
 .movie-title {
     font-weight: bolder;
 }
@@ -78,4 +80,6 @@
         width:80vw;
         height: 100%;
     }
+
+
 }

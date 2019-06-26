@@ -18,7 +18,10 @@ class index extends React.Component {
             movies : [],
             searching: false,
             loading: false,
+            page: 1,
             redirect: false,
+            activePage: '',
+            command: false
         }
     }
 
@@ -40,21 +43,36 @@ class index extends React.Component {
 
     populateMovies = (query) => {
         let quered = '';
+        let { page,command } = this.state;
         switch(query){
             case 'popular': quered = getPopularMovies; break;
             case 'toprated': quered = getTopRatedMovies; break;
             case 'nowplaying': quered = getNowPlayingMovies; break;
             default:
-                console.log("Error.");
+                console.log("Error.",query,this.state.activePage);
         }
-        getDataFn(quered+1)
+        getDataFn(quered+page)
         .then(response=>{
             let data = response.results;
             this.setState({
-                movies: data,
+                movies: (this.state.movies && !(this.state.activePage !== query)) ? [...this.state.movies,...data] : data,
+                loading: false,
+                activePage: query
             })
         });
         
+    }
+
+    loadmore = (query) => {
+      
+        this.setState({
+            page: this.state.page + 1,
+            loading: true,
+            activePage: query
+           
+         },()=>{
+            this.populateMovies(query);
+         })
     }
     render(){
         
@@ -74,7 +92,7 @@ class index extends React.Component {
                 render={(props)=><MoviesInformation {...props} />} />
             <Route
                 path="/paged/:pagename"
-                render={(props)=><Paged movies={this.state.movies} {...props} />}
+                render={(props)=><Paged loadmore={this.loadmore} movies={this.state.movies} {...props} />}
             />
 
             <Route  
@@ -82,6 +100,7 @@ class index extends React.Component {
                 render={(props)=><Pages {...props}/>}
                 />
           </Switch>
+         
         </HashRouter>
         </Container>
     );

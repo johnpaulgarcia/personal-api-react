@@ -20,11 +20,11 @@ export default class Navigation extends Component {
                                 Popular
                         </Link>
 
-                        <Link to="/paged/top-rated" onClick={()=>populateMoviesFn('toprated')}>             
+                        <Link to="/paged/toprated" onClick={()=>populateMoviesFn('toprated')}>             
                                 Top Rated
                         </Link>
 
-                        <Link to="/paged/now-playing" onClick={()=>populateMoviesFn('nowplaying')}>             
+                        <Link to="/paged/nowplaying" onClick={()=>populateMoviesFn('nowplaying')}>             
                             Now Playing
                         </Link>
                     </ul>

@@ -7,10 +7,12 @@
     display: grid;
     height: 100vh;
     grid-template-columns: minmax(250px,1fr) minmax(400px,10fr);
-    grid-template-rows: 1fr 11fr 0fr;
+    grid-template-rows: 1fr 11fr 1fr;
     grid-template-areas: 
     "navigation navigation navigation"
-    "categories movies movies";
+    "categories movies movies"
+    "categories next next"
+    ;
     color: #444;
     font-family: Avant , Arial, Helvetica, sans-serif;
     overflow-x: auto;
